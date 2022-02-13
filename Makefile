@@ -90,6 +90,10 @@ else # umask / $(CURDIR) / $(O)
 all:
 .PHONY: all
 
+# Set pqgo version
+CURDATE = $(shell date +%Y%m%d-%H%M)
+PROJECT_VERSION = "$(shell git describe)"
+
 # Set and export the version string
 export BR2_VERSION := 2018.02-rc3
 # Actual time the release is cut (for reproducible builds)
@@ -254,8 +258,8 @@ endif
 # timezone and locale may affect build output
 ifeq ($(BR2_REPRODUCIBLE),y)
 export TZ = UTC
-export LANG = C
-export LC_ALL = C
+export LANG = en_US.UTF-8
+export LC_ALL = en_US.UTF-8
 export GZIP = -n
 BR2_VERSION_GIT_EPOCH = $(shell GIT_DIR=$(TOPDIR)/.git $(GIT) log -1 --format=%at)
 export SOURCE_DATE_EPOCH ?= $(if $(wildcard $(TOPDIR)/.git),$(BR2_VERSION_GIT_EPOCH),$(BR2_VERSION_EPOCH))
@@ -760,6 +764,12 @@ endif
 		echo "RK_VERSION=$(RK_VERSION)"; \
 		echo "RK_OTA_HOST=$(RK_OTA_HOST)"; \
 	) >  $(TARGET_DIR)/etc/version
+
+	mkdir -p $(TARGET_DIR)/etc/ffgo
+	( \
+		echo -e "Quartz64: ${PROJECT_VERSION}"; \
+		echo -e "DATE:\t ${CURDATE}"; \
+	) >  $(TARGET_DIR)/etc/ffgo/ffver
 
 	@$(call MESSAGE,"Sanitizing RPATH in target tree")
 	$(TOPDIR)/support/scripts/fix-rpath target

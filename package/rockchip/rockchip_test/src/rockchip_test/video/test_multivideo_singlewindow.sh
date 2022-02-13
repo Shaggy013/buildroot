@@ -3,7 +3,7 @@
 
 case "$1" in
 	test)
-		multivideoplayer /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4 /oem/SampleVideo_1280x720_5mb.mp4
+		multivideoplayer /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4 /rockchip_test/video/SampleVideo_1280x720_5mb.mp4
 		;;
 	$1)
 		multivideoplayer $1 $1 $1 $1 $1 $1 $1 $1 $1

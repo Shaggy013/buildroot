@@ -14,19 +14,20 @@ RKWIFIBT_DEPENDENCIES = wpa_supplicant
 
 BT_TTY_DEV = $(call qstrip,$(BR2_PACKAGE_RKWIFIBT_BTUART))
 SXLOAD_WIFI = "S36load_wifi_modules"
+RK_WIFI_CHIP_NAME2 = AP6256
 FIRMWARE_DIR = system
 
 ifeq ($(call qstrip,$(BR2_ARCH)),aarch64)
 RKWIFIBT_ARCH=arm64
 else ifeq ($(call qstrip,$(BR2_ARCH)),arm)
-RKWIFIBT_ARCH=arm
+RKWIFIBT_ARCH=arm64
 endif
 
 BT_DRIVER_ARCH = $(shell grep -o "arm[^ ]*" $(TOPDIR)/../kernel/.config)
-ifeq ($(call qstrip,$(BT_DRIVER_ARCH)),arm64)
+ifeq ($(call qstrip,$(BT_DRIVER_ARCH)),aarch64)
 BT_DRIVER_ARCH = arm64
 else
-BT_DRIVER_ARCH = arm
+BT_DRIVER_ARCH = arm64
 endif
 
 ifeq ($(BR2_PACKAGE_RV1126_RV1109),y)
@@ -70,8 +71,8 @@ endef
 
 define RKWIFIBT_BROADCOM_INSTALL
     $(INSTALL) -D -m 0644 $(@D)/firmware/broadcom/$(BR2_PACKAGE_RKWIFIBT_CHIPNAME)/wifi/* $(TARGET_DIR)/$(FIRMWARE_DIR)/etc/firmware/
-    -$(INSTALL) -D -m 0644 $(@D)/firmware/broadcom/$(RK_WIFI_CHIP_NAME1)/wifi/* $(TARGET_DIR)/$(FIRMWARE_DIR)/etc/firmware/
-    -$(INSTALL) -D -m 0644 $(@D)/firmware/broadcom/$(RK_WIFI_CHIP_NAME2)/wifi/* $(TARGET_DIR)/$(FIRMWARE_DIR)/etc/firmware/
+    -$(INSTALL) -D -m 0644 $(@D)/firmware/broadcom/AP6256/wifi/* $(TARGET_DIR)/$(FIRMWARE_DIR)/etc/firmware/
+    -$(INSTALL) -D -m 0644 $(@D)/firmware/broadcom/AP6255/wifi/* $(TARGET_DIR)/$(FIRMWARE_DIR)/etc/firmware/
     $(INSTALL) -D -m 0755 $(@D)/brcm_tools/brcm_patchram_plus1 $(TARGET_DIR)/usr/bin/
     $(INSTALL) -D -m 0755 $(@D)/brcm_tools/dhd_priv $(TARGET_DIR)/usr/bin/
     $(INSTALL) -D -m 0755 $(@D)/bin/$(RKWIFIBT_ARCH)/* $(TARGET_DIR)/usr/bin/

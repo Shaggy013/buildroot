@@ -29,8 +29,8 @@ endef
 
 define RKNPU2_INSTALL_TARGET_CMDS
 
-    cp -r $(@D)/runtime/$(NPU_PLATFORM_INFO)/Linux/rknn_server/${NPU_PLATFORM_ARCH}/usr/bin/* $(STAGING_DIR)/usr/bin/
-    cp -r $(@D)/runtime/$(NPU_PLATFORM_INFO)/Linux/librknn_api/${NPU_PLATFORM_ARCH}/* $(STAGING_DIR)/usr/lib/
+    cp -r $(@D)/runtime/RK356X/Linux/rknn_server/aarch64/usr/bin/* $(STAGING_DIR)/usr/bin/
+    cp -r $(@D)/runtime/RK356X/Linux/librknn_api/aarch64/* $(STAGING_DIR)/usr/lib/
 endef
 
 $(eval $(generic-package))
