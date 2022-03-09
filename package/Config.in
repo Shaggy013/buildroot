@@ -83,6 +83,7 @@ menu "Debugging, profiling and benchmark"
 	source "package/blktrace/Config.in"
 	source "package/bonnie/Config.in"
 	source "package/cache-calibrator/Config.in"
+	source "package/clinfo/Config.in"
 	source "package/dhrystone/Config.in"
 	source "package/dieharder/Config.in"
 	source "package/dmalloc/Config.in"
@@ -213,6 +214,8 @@ menu "Fonts, cursors, icons, sounds and themes"
 comment "Cursors"
 	source "package/comix-cursors/Config.in"
 	source "package/obsidian-cursors/Config.in"
+	source package/xcursor-themes/Config.in
+	source package/xcursor-transparent-theme/Config.in
 
 comment "Fonts"
 	source "package/bitstream-vera/Config.in"
